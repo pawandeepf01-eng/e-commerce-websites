@@ -1,0 +1,91 @@
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
+import toast from "react-hot-toast";
+
+function ProductDetails() {
+  const navigate = useNavigate();
+  const { id } = useParams(); // get product id from URL
+  const [product, setProduct] = useState([]);
+
+  function handlecheckout(id) {
+    navigate(`/checkout/${id}`);
+  }
+
+  const addcart = async (data) => {
+    try {
+      const res = await axios.post("http://localhost:6050/api/addcart", {
+        name: data.name,
+        price: data.price,
+        img: data.img,
+      });
+      toast.success("succesfully added to cart");
+      // navigate("/");
+    } catch (err) {
+      toast.error("Something went wrong");
+      setMessage(err.response?.data?.message || "Something went wrong");
+    }
+  };
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await axios.get(`http://localhost:6050/api/products/${id}`);
+        setProduct(res.data);
+      } catch (err) {
+        console.error("Error fetching product:", err.message);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
+  if (!product) return <p>Loading...</p>;
+
+  return (
+    <div className="flex items-center bg-gray-100  p-6  justify-center gap-6">
+      <motion.div
+        className=" p-4 rounded-lg"
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }} // animate only when visible
+        transition={{ duration: 2 }}
+      >
+        <img
+          src={`http://localhost:6050/uploads/${product.img}`}
+          alt={product.name}
+          className="h-150 w-150 object-cover rounded-lg shadow-md"
+        />
+      </motion.div>
+      <motion.div
+        className=" p-6 rounded-lg max-w-md"
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }} // animate only when visible
+        transition={{ duration: 2 }}
+      >
+        <h1 className="text-6xl font-extrabold mb-4 ">{product.name}</h1>
+        <p className="text-5xl font-semibold text-green-400 mt-2">
+          ₹ {product.price}
+        </p>
+        <p className="mt-4 text-base  ">{product.discription}</p>
+        <div className="flex gap-4 mt-6">
+          <button
+            className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition"
+            onClick={()  => {addcart(product)}}
+          >
+            Add to Cart
+          </button>
+          <button
+            onClick={() => handlecheckout(product._id)}
+            className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-md transition"
+          >
+            Buy Now
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+export default ProductDetails;
