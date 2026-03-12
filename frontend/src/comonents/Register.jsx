@@ -20,7 +20,7 @@ function Register() {
 
   const onsubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:6050/api/register", data);
+      const res = await axios.post("https://backend-api-61hk.onrender.com/api/register", data);
       setMessage(res.data.message);
       const role = res.data.role;
       const token = res.data.token;

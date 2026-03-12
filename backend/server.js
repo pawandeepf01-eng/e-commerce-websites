@@ -24,7 +24,7 @@ app.use(express.json());
 coonectp();
 app.use(cookieparser())
 app.use(cors({
-  origin: "*", // your React app
+  origin: "http://localhost:5173", // your React app
   credentials: true
 }))
 app.use("/api", router);
