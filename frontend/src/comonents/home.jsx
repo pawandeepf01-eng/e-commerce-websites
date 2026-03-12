@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Video from "../assets/video.mp4";
 import First from "../assets/first.jpg";
-import Second from "../assets/Second.jpg";
+import Second from "../assets/second.jpg";
 import Third from "../assets/third.jpg";
 import Fourth from "../assets/fourth.jpg";
 import Side from "../assets/side.jpg";
@@ -19,7 +19,7 @@ function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:6050/api/products");
+        const res = await axios.get("https://backend-api-61hk.onrender.com/api/products");
         setItems(res.data);
       } catch (err) {
         console.error("Error fetching:", err.message);

@@ -9,7 +9,7 @@ function Showuser() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:6050/api/showuser");
+        const res = await axios.get("https://backend-api-61hk.onrender.com/api/showuser");
         setItems(res.data);
       } catch (err) {
         toast.error("Error fetching users");
