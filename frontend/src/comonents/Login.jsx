@@ -21,9 +21,13 @@ function Login() {
 
   const onsubmit = async (data) => {
     try {
-      const res = await axios.post("https://backend-api-cl99.onrender.com/api/login", data, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "https://backend-api-cl99.onrender.com/api/login",
+        data,
+        {
+          withCredentials: true,
+        },
+      );
       setMessage(res.data.message);
       const role = res.data.role;
       const token = res.data.token;
@@ -32,7 +36,7 @@ function Login() {
       navigate("/");
       reset();
     } catch (err) {
-      console.log(err)
+      console.log(err);
       toast.error("Something went wrong");
       setMessage(err.response?.data?.message || "Something went wrong");
     }
@@ -40,8 +44,8 @@ function Login() {
   return (
     <>
       <div
-        className="main h-screen w-full  flex justify-center items-center bg-cover gap-20"
-        style={{ backgroundImage: `URL(${Back})` }}
+        className="main min-h-screen w-full flex justify-center items-center bg-cover bg-center bg-no-repeat gap-6 md:gap-20 px-4"
+        style={{ backgroundImage: `url(${Back})` }}
       >
         <motion.form
           onSubmit={handleSubmit(onsubmit)}
