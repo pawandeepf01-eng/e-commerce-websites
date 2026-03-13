@@ -195,7 +195,7 @@ function Home() {
               <img
                 onClick={() => navigate(`/products/${item._id}`)}
                 className="h-60 w-48 object-cover rounded-lg hover:-translate-y-2 transition cursor-pointer"
-                src={`http://localhost:6050/uploads/${item.img}`}
+                src={`https://backend-23u8.onrender.com/uploads/${item.img}`}
                 alt={item.name}
               />
 
