@@ -21,7 +21,7 @@ function Login() {
 
   const onsubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:6050/api/login", data, {
+      const res = await axios.post("https://backend-23u8.onrender.com/api/login", data, {
         withCredentials: true,
       });
       setMessage(res.data.message);
