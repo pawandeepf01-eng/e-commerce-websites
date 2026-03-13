@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
+  const navigate = useNavigate();
   const { id } = useParams(); // get product id from URL
 
   // State to store cart items
@@ -69,6 +71,7 @@ function Checkout() {
       setCartItems([]);
 
       reset();
+      navigate("/")
     } catch(err) {
       // console.error(err);
       toast.error("Something went wrong!");
