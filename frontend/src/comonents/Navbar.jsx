@@ -33,7 +33,9 @@ function Navbar() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://backend-23u8.onrender.com/api/cart");
+        const res = await axios.get(
+          "https://backend-23u8.onrender.com/api/cart",
+        );
         setItems(res.data); // axios automatically parses JSON
       } catch (err) {
         console.error("Error fetching:", err.message);
@@ -99,7 +101,7 @@ function Navbar() {
           )}
 
           {/* Navigation Links */}
-          <div className=" md:flex gap-6 text-sm md:text-lg font-bold justify-evenly">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6 text-sm md:text-lg font-bold justify-evenly items-center">
             <Link className="hover:underline" to="/">
               Home
             </Link>
@@ -156,7 +158,7 @@ function Navbar() {
             <details className="dropdown">
               <summary className="btn m-1 bg-transparent shadow-none border-none text-white font-bold flex items-center gap-2 overflow-visible">
                 <img
-                  src={profilePic ||Logo1}
+                  src={profilePic || Logo1}
                   alt=""
                   className="w-8 h-8 rounded-full object-cover border border-white/30 shadow-sm"
                 />
