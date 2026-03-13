@@ -18,7 +18,7 @@ function Navbar() {
   if (token) {
     try {
       const decoded = jwtDecode(token);
-      userName = decoded.name; // 👈 extract name
+      userName = decoded.name;
     } catch (e) {
       console.log("Invalid token");
     }
@@ -36,7 +36,7 @@ function Navbar() {
         const res = await axios.get(
           "https://backend-23u8.onrender.com/api/cart",
         );
-        setItems(res.data); // axios automatically parses JSON
+        setItems(res.data);
       } catch (err) {
         console.error("Error fetching:", err.message);
       }
@@ -75,11 +75,11 @@ function Navbar() {
   return (
     <>
       <div
-        className="w-full flex flex-wrap justify-between items-center bg-cover bg-no-repeat text-white px-4 sm:px-6 md:px-8 py-2"
+        className="w-full flex flex-wrap md:flex-nowrap justify-between items-center bg-cover bg-no-repeat text-white px-3 sm:px-6 md:px-10 py-2 gap-3"
         style={{ backgroundImage: `URL(${Img})` }}
       >
         {/* Left Section */}
-        <div className="flex items-center gap-4 md:gap-8">
+        <div className="flex items-center gap-3 sm:gap-4 md:gap-8 flex-wrap">
           <img
             src={Logo}
             alt="Logo"
@@ -101,8 +101,7 @@ function Navbar() {
           )}
 
           {/* Navigation Links */}
-          <div className="flex  gap-4 md:gap-6 text-sm md:text-lg font-bold justify-evenly ">
-         
+          <div className="flex gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-lg font-bold flex-nowrap">
             <Link className="hover:underline" to="/">
               Home
             </Link>
@@ -115,7 +114,8 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-6">
+        {/* Right Section */}
+        <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
           <details className="dropdown">
             <summary className="btn m-1 bg-transparent shadow-none border-none text-white font-bold flex items-center gap-2">
               <User />
@@ -123,7 +123,6 @@ function Navbar() {
             </summary>
 
             <ul className="menu dropdown-content bg-base-100 rounded-box w-52 p-2 shadow-sm text-black">
-              {/* If NO TOKEN (not logged in) → show LOGIN */}
               {!localStorage.getItem("token") && (
                 <li>
                   <Link to="/login" className="flex items-center gap-2">
@@ -132,7 +131,6 @@ function Navbar() {
                 </li>
               )}
 
-              {/* If TOKEN exists → show LOGOUT */}
               {localStorage.getItem("token") && (
                 <li>
                   <button
@@ -144,7 +142,6 @@ function Navbar() {
                 </li>
               )}
 
-              {/* Show Admin only if user is admin */}
               {localStorage.getItem("role") === "admin" && (
                 <li>
                   <Link to="/admin" className="flex items-center gap-2">
@@ -167,6 +164,7 @@ function Navbar() {
                   {userName}
                 </p>
               </summary>
+
               <ul className="menu dropdown-content bg-base-100 rounded-box w-52 p-2 shadow-sm text-black">
                 <li>
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -183,6 +181,7 @@ function Navbar() {
                     />
                   </label>
                 </li>
+
                 <li>
                   <Link to="/userorder" className="flex items-center gap-2">
                     <User /> Order
@@ -199,19 +198,21 @@ function Navbar() {
                 type="checkbox"
                 className="drawer-toggle"
               />
+
               <div className="drawer-content">
                 <label
                   htmlFor="my-drawer-5"
                   className="drawer-button btn btn-primary bg-transparent border-none shadow-none text-white flex items-center gap-2"
                 >
-                  <ShoppingCart />{" "}
+                  <ShoppingCart />
                   <span className="hidden sm:inline">Cart</span>
                 </label>
               </div>
 
               <div className="drawer-side">
                 <label htmlFor="my-drawer-5" className="drawer-overlay"></label>
-                <ul className="menu bg-base-200 min-h-full w-72 sm:w-96 p-4">
+
+                <ul className="menu bg-base-200 min-h-full w-72 sm:w-80 md:w-96 p-4">
                   {items.length === 0 ? (
                     <li className="text-black text-lg sm:text-2xl text-center">
                       No items in cart
@@ -222,12 +223,13 @@ function Navbar() {
                         className="w-full text-black flex mt-4 justify-between items-center"
                         key={item._id}
                       >
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3 sm:gap-4">
                           <img
                             className="h-20 w-20 sm:h-28 sm:w-28 rounded-xl"
                             src={`https://backend-23u8.onrender.com/uploads/${item.img}`}
                             alt={item.name}
                           />
+
                           <div className="flex flex-col gap-2 text-lg sm:text-2xl font-bold">
                             {item.name}
                             <span>₹{item.price}</span>
