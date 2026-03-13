@@ -8,7 +8,7 @@ const { authMiddleware } = require("../middlware/auth.js");
 
 
 
-router.post("/addorder",authMiddleware, addorder);
+router.post("/addorder", addorder);
 router.get("/order",authMiddleware, getorder)
 
 
