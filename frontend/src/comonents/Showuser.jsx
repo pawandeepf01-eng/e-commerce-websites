@@ -9,7 +9,7 @@ function Showuser() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("https://backend-23u8.onrender.com/api/showuser");
+        const res = await axios.get("https://backend-api-cl99.onrender.com/api/showuser");
         setItems(res.data);
       } catch (err) {
         toast.error("Error fetching users");
@@ -22,7 +22,7 @@ function Showuser() {
   const deleteCartItem = async (id) => {
     try {
       const res = await axios.delete(
-        `https://backend-23u8.onrender.com/api/deleteuser/${id}`
+        `https://backend-api-cl99.onrender.com/api/deleteuser/${id}`
       );
       setItems((prev) => prev.filter((item) => item._id !== id));
       toast.success(res.data.message);

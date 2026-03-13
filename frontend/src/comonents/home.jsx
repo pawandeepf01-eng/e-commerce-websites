@@ -19,7 +19,7 @@ function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://backend-23u8.onrender.com/api/products");
+        const res = await axios.get("https://backend-api-cl99.onrender.com/api/products");
         setItems(res.data);
       } catch (err) {
         console.error("Error fetching:", err.message);
@@ -32,7 +32,7 @@ function Home() {
 
    const addcart = async (data) => {
     try {
-      const res = await axios.post("https://backend-23u8.onrender.com/api/addcart", {
+      const res = await axios.post("https://backend-api-cl99.onrender.com/api/addcart", {
       name: data.name,
       price: data.price,
       img: data.img,
@@ -195,7 +195,7 @@ function Home() {
               <img
                 onClick={() => navigate(`/products/${item._id}`)}
                 className="h-60 w-48 object-cover rounded-lg hover:-translate-y-2 transition cursor-pointer"
-                src={`https://backend-23u8.onrender.com/uploads/${item.img}`}
+                src={`https://backend-api-cl99.onrender.com/uploads/${item.img}`}
                 alt={item.name}
               />
 

@@ -34,7 +34,7 @@ function Navbar() {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          "https://backend-23u8.onrender.com/api/cart"
+          "https://backend-api-cl99.onrender.com/api/cart"
         );
         setItems(res.data);
       } catch (err) {
@@ -48,7 +48,7 @@ function Navbar() {
   const deleteCartItem = async (id) => {
     try {
       const res = await axios.delete(
-        `https://backend-23u8.onrender.com/api/deletecart/${id}`
+        `https://backend-api-cl99.onrender.com/api/deletecart/${id}`
       );
       setItems((prev) => prev.filter((item) => item._id !== id));
       toast.success(res.data.message);
@@ -59,7 +59,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("https://backend-23u8.onrender.com/api/logout", {
+      await axios.post("https://backend-api-cl99.onrender.com/api/logout", {
         withCredentials: true,
       });
       localStorage.removeItem("token");
@@ -227,7 +227,7 @@ function Navbar() {
                         <div className="flex items-center gap-3">
                           <img
                             className="h-20 w-20 sm:h-24 sm:w-24 rounded-xl"
-                            src={`https://backend-23u8.onrender.com/uploads/${item.img}`}
+                            src={`https://backend-api-cl99.onrender.com/uploads/${item.img}`}
                             alt={item.name}
                           />
 

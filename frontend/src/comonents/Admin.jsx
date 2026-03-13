@@ -26,7 +26,7 @@ function Admin() {
       formData.append("img", data.img[0]); // file input gives array
 
       // Send with axios
-      const res = await axios.post("https://backend-23u8.onrender.com/api/add", formData, {
+      const res = await axios.post("https://backend-api-cl99.onrender.com/api/add", formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });

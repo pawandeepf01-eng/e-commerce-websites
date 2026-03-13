@@ -15,7 +15,7 @@ function Checkout() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`https://backend-23u8.onrender.com/api/products/${id}`);
+        const res = await axios.get(`https://backend-api-cl99.onrender.com/api/products/${id}`);
         setproductitem(res.data);
         setCartItems([]);
       } catch (err) {
@@ -32,7 +32,7 @@ function Checkout() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const res = await axios.get("https://backend-23u8.onrender.com/api/cart");
+        const res = await axios.get("https://backend-api-cl99.onrender.com/api/cart");
         setCartItems(res.data);
       } catch (err) {
         console.error("Error fetching cart:", err);
@@ -53,7 +53,7 @@ function Checkout() {
   const onSubmit = async (data) => {
     try {
       // Send order to backend
-      const res = await axios.post("https://backend-23u8.onrender.com/api/addorder", {
+      const res = await axios.post("https://backend-api-cl99.onrender.com/api/addorder", {
         productname: productitem.name,
         price: productitem.price,
         img: productitem.img,
@@ -93,7 +93,7 @@ function Checkout() {
                 className="flex flex-col items-center p-2 bg-white rounded shadow min-w-[150px] "
               >
                 <img
-                  src={`https://backend-23u8.onrender.com/uploads/${item.img}`}
+                  src={`https://backend-api-cl99.onrender.com/uploads/${item.img}`}
                   alt={item.name}
                   className="h-28 w-28 object-cover rounded mb-2"
                 />
@@ -116,7 +116,7 @@ function Checkout() {
           {productitem && (
             <div key={productitem._id} className="flex justify-center gap-10">
               <img
-                src={`https://backend-23u8.onrender.com/uploads/${productitem.img}`}
+                src={`https://backend-api-cl99.onrender.com/uploads/${productitem.img}`}
                 alt={productitem.name}
                 className="h-28 w-28 object-cover rounded mb-2"
               />

@@ -11,7 +11,7 @@ function Deleteproduct() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://backend-23u8.onrender.com/api/products");
+        const res = await axios.get("https://backend-api-cl99.onrender.com/api/products");
         setItems(res.data); // axios automatically parses JSON
       } catch (err) {
         toast.error("Error fetching:", err.message);
@@ -24,7 +24,7 @@ function Deleteproduct() {
   const deleteCartItem = async (id) => {
     try {
       const res = await axios.delete(
-        `https://backend-23u8.onrender.com/api/deleteproduct/${id}`,
+        `https://backend-api-cl99.onrender.com/api/deleteproduct/${id}`,
       );
       setItems((prev) => prev.filter((item) => item._id !== id));
       toast.success(res.data.message);
@@ -48,7 +48,7 @@ function Deleteproduct() {
           >
             <img
               className="h-70 w-70 object-cover "
-              src={`https://backend-23u8.onrender.com/uploads/${item.img}`}
+              src={`https://backend-api-cl99.onrender.com/uploads/${item.img}`}
               alt={item.name}
             />
             <p className="text-xl mt-2">{item.name}</p>
