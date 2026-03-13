@@ -101,7 +101,8 @@ function Navbar() {
           )}
 
           {/* Navigation Links */}
-          <div className="flex flex-col md:flex-row gap-4 md:gap-6 text-sm md:text-lg font-bold justify-evenly items-center">
+          <div className="flex flex-row gap-4 md:gap-6 text-sm md:text-lg font-bold justify-evenly items-center">
+            {" "}
             <Link className="hover:underline" to="/">
               Home
             </Link>
