@@ -99,7 +99,7 @@ function Navbar() {
           )}
 
           {/* Navigation Links */}
-          <div className=" md:flex gap-6 text-sm md:text-lg font-bold">
+          <div className=" md:flex gap-6 text-sm md:text-lg font-bold justify-evenly">
             <Link className="hover:underline" to="/">
               Home
             </Link>
