@@ -34,7 +34,7 @@ function Navbar() {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          "https://backend-23u8.onrender.com/api/cart",
+          "https://backend-23u8.onrender.com/api/cart"
         );
         setItems(res.data);
       } catch (err) {
@@ -48,7 +48,7 @@ function Navbar() {
   const deleteCartItem = async (id) => {
     try {
       const res = await axios.delete(
-        `https://backend-23u8.onrender.com/api/deletecart/${id}`,
+        `https://backend-23u8.onrender.com/api/deletecart/${id}`
       );
       setItems((prev) => prev.filter((item) => item._id !== id));
       toast.success(res.data.message);
@@ -75,15 +75,15 @@ function Navbar() {
   return (
     <>
       <div
-        className="w-full flex flex-wrap md:flex-nowrap justify-between items-center bg-cover bg-no-repeat text-white px-3 sm:px-6 md:px-10 py-2 gap-3"
+        className="w-full flex flex-nowrap justify-between items-center bg-cover bg-no-repeat text-white px-3 sm:px-6 md:px-10 py-2"
         style={{ backgroundImage: `URL(${Img})` }}
       >
         {/* Left Section */}
-        <div className="flex items-center gap-3 sm:gap-4 md:gap-8 flex-wrap">
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
           <img
             src={Logo}
             alt="Logo"
-            className="h-10 w-10 md:h-12 md:w-12 rounded-full cursor-pointer"
+            className="h-9 w-9 md:h-12 md:w-12 rounded-full cursor-pointer"
             onClick={() => setShowImage(true)}
           />
 
@@ -101,7 +101,7 @@ function Navbar() {
           )}
 
           {/* Navigation Links */}
-          <div className="flex gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-lg font-bold flex-nowrap">
+          <div className="flex gap-2 sm:gap-3 md:gap-6 text-xs sm:text-sm md:text-lg font-bold whitespace-nowrap">
             <Link className="hover:underline" to="/">
               Home
             </Link>
@@ -115,11 +115,12 @@ function Navbar() {
         </div>
 
         {/* Right Section */}
-        <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-6 flex-nowrap">
+          {/* Account */}
           <details className="dropdown">
-            <summary className="btn m-1 bg-transparent shadow-none border-none text-white font-bold flex items-center gap-2">
+            <summary className="btn m-1 bg-transparent shadow-none border-none text-white font-bold flex items-center gap-1">
               <User />
-              <span className="hidden sm:inline">Account</span>
+              <span className="hidden md:inline">Account</span>
             </summary>
 
             <ul className="menu dropdown-content bg-base-100 rounded-box w-52 p-2 shadow-sm text-black">
@@ -152,17 +153,16 @@ function Navbar() {
             </ul>
           </details>
 
+          {/* Profile */}
           {isLoggedIn && (
             <details className="dropdown">
-              <summary className="btn m-1 bg-transparent shadow-none border-none text-white font-bold flex items-center gap-2 overflow-visible">
+              <summary className="btn m-1 bg-transparent shadow-none border-none text-white font-bold flex items-center gap-2">
                 <img
                   src={profilePic || Logo1}
                   alt=""
-                  className="w-8 h-8 rounded-full object-cover border border-white/30 shadow-sm"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border border-white/30 shadow-sm"
                 />
-                <p className="hidden sm:inline whitespace-nowrap max-w-fit">
-                  {userName}
-                </p>
+                <p className="hidden md:inline whitespace-nowrap">{userName}</p>
               </summary>
 
               <ul className="menu dropdown-content bg-base-100 rounded-box w-52 p-2 shadow-sm text-black">
@@ -191,6 +191,7 @@ function Navbar() {
             </details>
           )}
 
+          {/* Cart */}
           {role === "user" && (
             <div className="drawer drawer-end">
               <input
@@ -202,10 +203,10 @@ function Navbar() {
               <div className="drawer-content">
                 <label
                   htmlFor="my-drawer-5"
-                  className="drawer-button btn btn-primary bg-transparent border-none shadow-none text-white flex items-center gap-2"
+                  className="drawer-button btn btn-primary bg-transparent border-none shadow-none text-white flex items-center gap-1"
                 >
                   <ShoppingCart />
-                  <span className="hidden sm:inline">Cart</span>
+                  <span className="hidden md:inline">Cart</span>
                 </label>
               </div>
 
@@ -214,7 +215,7 @@ function Navbar() {
 
                 <ul className="menu bg-base-200 min-h-full w-72 sm:w-80 md:w-96 p-4">
                   {items.length === 0 ? (
-                    <li className="text-black text-lg sm:text-2xl text-center">
+                    <li className="text-black text-lg text-center">
                       No items in cart
                     </li>
                   ) : (
@@ -223,14 +224,14 @@ function Navbar() {
                         className="w-full text-black flex mt-4 justify-between items-center"
                         key={item._id}
                       >
-                        <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="flex items-center gap-3">
                           <img
-                            className="h-20 w-20 sm:h-28 sm:w-28 rounded-xl"
+                            className="h-20 w-20 sm:h-24 sm:w-24 rounded-xl"
                             src={`https://backend-23u8.onrender.com/uploads/${item.img}`}
                             alt={item.name}
                           />
 
-                          <div className="flex flex-col gap-2 text-lg sm:text-2xl font-bold">
+                          <div className="flex flex-col gap-1 text-lg font-bold">
                             {item.name}
                             <span>₹{item.price}</span>
                           </div>
