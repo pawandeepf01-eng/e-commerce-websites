@@ -33,7 +33,7 @@ function Navbar() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:6050/api/cart");
+        const res = await axios.get("https://backend-23u8.onrender.com/api/cart");
         setItems(res.data); // axios automatically parses JSON
       } catch (err) {
         console.error("Error fetching:", err.message);
@@ -46,7 +46,7 @@ function Navbar() {
   const deleteCartItem = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:6050/api/deletecart/${id}`,
+        `https://backend-23u8.onrender.com/api/deletecart/${id}`,
       );
       setItems((prev) => prev.filter((item) => item._id !== id));
       toast.success(res.data.message);
@@ -57,7 +57,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:6050/api/logout", {
+      await axios.post("https://backend-23u8.onrender.com/api/logout", {
         withCredentials: true,
       });
       localStorage.removeItem("token");
@@ -222,7 +222,7 @@ function Navbar() {
                         <div className="flex items-center gap-4">
                           <img
                             className="h-20 w-20 sm:h-28 sm:w-28 rounded-xl"
-                            src={`http://localhost:6050/uploads/${item.img}`}
+                            src={`https://backend-23u8.onrender.com/uploads/${item.img}`}
                             alt={item.name}
                           />
                           <div className="flex flex-col gap-2 text-lg sm:text-2xl font-bold">

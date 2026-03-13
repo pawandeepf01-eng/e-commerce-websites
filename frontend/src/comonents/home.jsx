@@ -32,7 +32,7 @@ function Home() {
 
    const addcart = async (data) => {
     try {
-      const res = await axios.post("http://localhost:6050/api/addcart", {
+      const res = await axios.post("https://backend-23u8.onrender.com/api/addcart", {
       name: data.name,
       price: data.price,
       img: data.img,

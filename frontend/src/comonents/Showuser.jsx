@@ -22,7 +22,7 @@ function Showuser() {
   const deleteCartItem = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:6050/api/deleteuser/${id}`
+        `https://backend-23u8.onrender.com/api/deleteuser/${id}`
       );
       setItems((prev) => prev.filter((item) => item._id !== id));
       toast.success(res.data.message);

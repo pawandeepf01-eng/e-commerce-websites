@@ -8,7 +8,7 @@ function Order() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get("http://localhost:6050/api/order");
+        const res = await axios.get("https://backend-23u8.onrender.com/api/order");
         setitem(res.data);
       } catch (err) {
         console.error("Error fetching product:", err.message);
@@ -33,7 +33,7 @@ function Order() {
               >
                 {/* Product Image */}
                 <img
-                  src={`http://localhost:6050/uploads/${index.img}`}
+                  src={`https://backend-23u8.onrender.com/uploads/${index.img}`}
                   alt="order"
                   className="h-80 w-full object-cover rounded-md"
                 />
