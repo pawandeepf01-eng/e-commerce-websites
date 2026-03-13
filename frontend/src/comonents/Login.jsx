@@ -44,7 +44,7 @@ function Login() {
   return (
     <>
       <div
-        className="main min-h-screen w-full flex justify-center items-center bg-cover bg-center bg-no-repeat gap-6 md:gap-20 px-4"
+        className="main min-h-screen w-full flex justify-center items-center bg-cover bg-center bg-no-repeat gap-6 md:gap-20 px-6"
         style={{ backgroundImage: `url(${Back})` }}
       >
         <motion.form

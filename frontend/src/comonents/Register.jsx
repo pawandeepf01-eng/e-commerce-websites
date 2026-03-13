@@ -20,7 +20,10 @@ function Register() {
 
   const onsubmit = async (data) => {
     try {
-      const res = await axios.post("https://backend-api-cl99.onrender.com/api/register", data);
+      const res = await axios.post(
+        "https://backend-api-cl99.onrender.com/api/register",
+        data,
+      );
       setMessage(res.data.message);
       const role = res.data.role;
       const token = res.data.token;
@@ -37,8 +40,8 @@ function Register() {
   return (
     <>
       <div
-        className="main h-screen w-full  flex justify-center items-center bg-cover gap-20"
-        style={{ backgroundImage: `URL(${Back})` }}
+        className="main min-h-screen w-full flex justify-center items-center bg-cover bg-center bg-no-repeat gap-6 md:gap-20 px-4"
+        style={{ backgroundImage: `url(${Back})` }}
       >
         {/* <div className="formdiv mt-5 w-110 border border-red-600"> */}
         <motion.form
