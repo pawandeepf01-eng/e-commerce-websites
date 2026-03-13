@@ -19,7 +19,7 @@ function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:6050/api/products");
+        const res = await axios.get("https://backend-23u8.onrender.com/api/products");
         setItems(res.data);
       } catch (err) {
         console.error("Error fetching:", err.message);
