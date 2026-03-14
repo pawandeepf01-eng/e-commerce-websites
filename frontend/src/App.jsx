@@ -1,25 +1,29 @@
+import React, { Suspense, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from "./comonents/Navbar";
-import Home from "./comonents/home";
-import About from "./comonents/About";
-import Shop from "./comonents/Shop";
-import Footer from "./comonents/Footer";
-import Join from "./comonents/Join";
-import Products from "./comonents/Products";
-import Register from "./comonents/Register";
-import Login from "./comonents/Login";
-import AdminProtectedRoute from "./comonents/Adminprotecting";
-import Admin from "./comonents/Admin";
-import Checkout from "./comonents/Checkout";
-import Order from "./comonents/order";
-import AdminLayout from "./comonents/Adminlayout";
-import UserProtectedRoute from "./comonents/userprotecting";
-import Deleteproduct from "./comonents/Deleteproduct";
-import Userorder from "./comonents/userorder";
 import { Toaster } from "react-hot-toast";
-import Showuser from "./comonents/Showuser";
+
+// Lazy components
+const Navbar = lazy(() => import("./comonents/Navbar"));
+const Home = lazy(() => import("./comonents/home"));
+const About = lazy(() => import("./comonents/About"));
+const Shop = lazy(() => import("./comonents/Shop"));
+const Footer = lazy(() => import("./comonents/Footer"));
+const Join = lazy(() => import("./comonents/Join"));
+const Products = lazy(() => import("./comonents/Products"));
+const Register = lazy(() => import("./comonents/Register"));
+const Login = lazy(() => import("./comonents/Login"));
+const AdminProtectedRoute = lazy(() => import("./comonents/Adminprotecting"));
+const Admin = lazy(() => import("./comonents/Admin"));
+const Checkout = lazy(() => import("./comonents/Checkout"));
+const Order = lazy(() => import("./comonents/order"));
+const AdminLayout = lazy(() => import("./comonents/Adminlayout"));
+const UserProtectedRoute = lazy(() => import("./comonents/userprotecting"));
+const Deleteproduct = lazy(() => import("./comonents/Deleteproduct"));
+const Userorder = lazy(() => import("./comonents/userorder"));
+const Showuser = lazy(() => import("./comonents/Showuser"));
 
 function App() {
+
   const router = createBrowserRouter([
     // PUBLIC ROUTES
     {
@@ -114,9 +118,11 @@ function App() {
       path: "/admin",
       element: (
         <AdminProtectedRoute>
-          <Navbar />
-          <AdminLayout />
-          <Footer />
+          <>
+            <Navbar />
+            <AdminLayout />
+            <Footer />
+          </>
         </AdminProtectedRoute>
       ),
       children: [
@@ -131,7 +137,16 @@ function App() {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-      <RouterProvider router={router} />
+
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-screen text-xl font-bold">
+            Loading...
+          </div>
+        }
+      >
+        <RouterProvider router={router} />
+      </Suspense>
     </>
   );
 }
