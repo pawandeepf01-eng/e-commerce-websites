@@ -21,6 +21,7 @@ const UserProtectedRoute = lazy(() => import("./comonents/userprotecting"));
 const Deleteproduct = lazy(() => import("./comonents/Deleteproduct"));
 const Userorder = lazy(() => import("./comonents/userorder"));
 const Showuser = lazy(() => import("./comonents/Showuser"));
+const ForgotPassword = lazy(() => import("./comonents/ForgotPassword"));
 
 function App() {
 
@@ -34,6 +35,10 @@ function App() {
       path: "/login",
       element: <Login />,
     },
+    {
+ path:"/forgot-password",
+ element:<ForgotPassword/>
+},
 
     // PROTECTED ROUTES
     {

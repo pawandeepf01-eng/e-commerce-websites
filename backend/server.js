@@ -25,7 +25,7 @@ coonectp();
 app.use(cookieparser())
 app.use(cors({
     origin: ["http://localhost:5173",
-  "https://e-commerce-websites-red.vercel.app" ], // your React app
+  "https://e-commerce-websites-red.vercel.app" ], 
   credentials: true
 }))
 app.use("/api", router);
