@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import toast  from "react-hot-toast";
 
 function Admin() {
-  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   function handlerouteback() {
     navigate("/");
@@ -28,7 +27,8 @@ function Admin() {
 
       // Send with axios
       const res = await axios.post("https://backend-api-cl99.onrender.com/api/add", formData, {
-        headers: { "Content-Type": "multipart/form-data", Authorization: `Bearer ${token}` },
+        withCredentials: true,
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       setMessage(res.data.message);

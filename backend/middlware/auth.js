@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 function authMiddleware(req, res, next) {
-const token = req.headers.authorization?.split(" ")[1];  if (!token) return res.status(401).json({ message: "Not logged in" });
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ message: "Not logged in" });
 
   try {
     const decoded = jwt.verify(token, process.env.Hello);
@@ -15,8 +16,8 @@ const token = req.headers.authorization?.split(" ")[1];  if (!token) return res.
 function checkAdmin(req, res, next) {
   if (req.user && req.user.role === "admin") {
     next(); 
-  } else {
-    // console.log(err);
+  } else (err) => {
+    console.log(err);
     res.status(403).json({ message: "Access denied. Admins only." });
   }
 }
