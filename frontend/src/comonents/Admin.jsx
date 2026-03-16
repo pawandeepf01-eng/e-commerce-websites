@@ -29,7 +29,7 @@ function Admin() {
       // Send with axios
       const res = await axios.post("https://backend-api-cl99.onrender.com/api/add", formData, {
         withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data",Authorization:`Bearer${token}` },
+        headers: { "Content-Type": "multipart/form-data",Authorization:`Bearer ${token}` },
       });
 
       setMessage(res.data.message);
