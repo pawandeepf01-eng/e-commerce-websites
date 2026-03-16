@@ -15,8 +15,8 @@ const token = req.headers.authorization?.split(" ")[1];  if (!token) return res.
 function checkAdmin(req, res, next) {
   if (req.user && req.user.role === "admin") {
     next(); 
-  } else (err) => {
-    console.log(err);
+  } else {
+    // console.log(err);
     res.status(403).json({ message: "Access denied. Admins only." });
   }
 }
