@@ -16,7 +16,8 @@ function authMiddleware(req, res, next) {
 function checkAdmin(req, res, next) {
   if (req.user && req.user.role === "admin") {
     next(); 
-  } else {
+  } else (err) => {
+    console.log(err);
     res.status(403).json({ message: "Access denied. Admins only." });
   }
 }
