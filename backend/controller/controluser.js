@@ -104,8 +104,8 @@ const deleteuser = async (req, res) => {
 const logoutUser = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: false, // true if HTTPS
-    sameSite: "Lax", // must match login
+    secure: true, // true if HTTPS
+    sameSite: "None", // must match login
   });
   res.json({ message: "Logged out successfully" });
 };
