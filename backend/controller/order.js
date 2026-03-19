@@ -26,7 +26,7 @@ const getorder = async (req, res) => {
     const orders = await order.find({ userId: req.userId }); // Fetch all items in cart collection
     res.status(200).json(orders);
   } catch (err) {
-    console.error(err)
+    console.error(err.message)
     res.status(500).json({ message: err.message });
   }
 };
