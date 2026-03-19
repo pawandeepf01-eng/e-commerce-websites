@@ -23,7 +23,7 @@ const getorder = async (req, res) => {
       return res.status(401).json({ message: "User not authenticated" });
     }
   
-    const orders = await order.find({ userId: mongoose.Types.ObjectId(req.userId) }); // Fetch all items in cart collection
+    const orders = await order.find({ userId: req.userId }); // Fetch all items in cart collection
     res.status(200).json(orders);
   } catch (err) {
     console.error(err)
