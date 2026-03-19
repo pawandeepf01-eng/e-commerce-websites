@@ -70,6 +70,10 @@ function Showuser() {
               >
                 {item.role}
               </p>
+                <p className="text-sm text-gray-500 mt-2">
+                    <span className="font-semibold">Register Date:</span>
+                    {new Date(index.createdAt).toLocaleDateString()}
+                  </p>
 
               <div className="flex justify-center">
                 <button
