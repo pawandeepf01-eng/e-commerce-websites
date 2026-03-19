@@ -8,7 +8,7 @@ function Order() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get("https://backend-api-cl99.onrender.com/api/order");
+        const res = await axios.get("https://backend-api-cl99.onrender.com/api/order",{ withCredentials: true });
         setitem(res.data);
       } catch (err) {
         console.error("Error fetching product:", err.message);
