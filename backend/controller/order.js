@@ -18,10 +18,15 @@ const addorder = async (req, res) => {
 
 const getorder = async (req, res) => {
   try {
+    console.log(req.userId);
+      if (!req.userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
   
     const orders = await order.find({ userId: mongoose.Types.ObjectId(req.userId) }); // Fetch all items in cart collection
     res.status(200).json(orders);
   } catch (err) {
+    console.error(err)
     res.status(500).json({ message: err.message });
   }
 };
