@@ -41,12 +41,13 @@ function Showuser() {
         All Users
       </h1>
 
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl mx-auto">
+      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-5xl mx-auto">
         {/* HEADER */}
-        <div className="grid grid-cols-3 md:grid-cols-4 bg-blue-600 text-white font-semibold py-3 px-4 text-sm md:text-base">
+        <div className="grid grid-cols-3 md:grid-cols-5 bg-blue-600 text-white font-semibold py-3 px-4 text-sm md:text-base">
           <p>Name</p>
           <p>Email</p>
           <p className="hidden md:block">Role</p>
+          <p className="hidden md:block">Register Date</p>
           <p className="text-center">Action</p>
         </div>
 
@@ -54,40 +55,57 @@ function Showuser() {
           const isAdmin = item.role?.toLowerCase() === "admin";
 
           return (
+            // ✅ Wrap the whole row in a div
             <div
               key={item._id}
-              className={`grid grid-cols-3 md:grid-cols-4 items-center py-3 px-4 border-b text-sm md:text-base transition
-              ${isAdmin ? "bg-green-100" : "hover:bg-gray-50"}`}
+              className={`border-b transition ${
+                isAdmin ? "bg-green-100" : "hover:bg-gray-50"
+              }`}
             >
-              <p className="font-medium">{item.userName}</p>
+              <div className="grid grid-cols-3 md:grid-cols-5 items-start md:items-center py-3 px-4 gap-2">
+                {/* Name */}
+                <div className="flex flex-col gap-1">
+                  <p className="font-medium">{item.userName}</p>
+                </div>
 
-              <p className="truncate">{item.Email}</p>
+                {/* Email */}
+                <div className="flex flex-col gap-1">
+                  <p className="truncate">{item.Email}</p>
+                </div>
 
-              <p
-                className={`capitalize font-semibold hidden md:block ${
-                  isAdmin ? "text-green-700" : ""
-                }`}
-              >
-                {item.role}
-              </p>
-                <p className="text-sm text-gray-500 mt-2">
-                    <span className="font-semibold">Register Date:</span>
+                {/* Role */}
+                <div className="hidden md:flex flex-col gap-1">
+                  <p
+                    className={`capitalize font-semibold ${
+                      isAdmin ? "text-green-700" : ""
+                    }`}
+                  >
+                    {item.role}
+                  </p>
+                </div>
+
+                {/* Register Date */}
+                <div className="hidden md:flex flex-col gap-1">
+                  <p className="text-gray-500">
                     {new Date(item.createdAt).toLocaleDateString()}
                   </p>
+                </div>
 
-              <div className="flex justify-center">
-                <button
-                  disabled={isAdmin}
-                  onClick={() => !isAdmin && deleteCartItem(item._id)}
-                  className={`p-2 rounded-md flex items-center gap-1
+                {/* Action Button */}
+                <div className="flex justify-center md:justify-start items-start md:items-center mt-2 md:mt-0">
+                  <button
+                    disabled={isAdmin}
+                    onClick={() => !isAdmin && deleteCartItem(item._id)}
+                    className={`p-2 rounded-md flex items-center gap-2
                   ${
                     isAdmin
                       ? "bg-gray-400 cursor-not-allowed text-white"
                       : "bg-red-500 hover:bg-red-600 text-white"
                   }`}
-                >
-                  <Trash size={18} />
-                </button>
+                  >
+                    <Trash size={18} /> <span className="hidden md:inline">Delete</span>
+                  </button>
+                </div>
               </div>
             </div>
           );
