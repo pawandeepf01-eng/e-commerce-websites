@@ -63,7 +63,9 @@ function Checkout() {
         email: data.email,
         phone: data.phone,
         address: data.address,
-      },);
+      },{
+    withCredentials: true // 🔥 MUST
+  });
 
       toast.success("Order placed successfully!");
 

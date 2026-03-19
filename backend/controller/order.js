@@ -7,7 +7,7 @@ const addorder = async (req, res) => {
     
 
     const { productname,address,img, price, customerName, email, phone,} = req.body;
-    const newcart = new order({productname, address,img, price, customerName, email, phone,});
+    const newcart = new order({userId: req.userId,productname, address,img, price, customerName, email, phone,});
     await newcart.save();
     res.status(200).json({ message: "product add suucesfully" });
   } catch (err) {
