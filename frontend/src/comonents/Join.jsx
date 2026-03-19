@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 function Join() {
   const navigate = useNavigate();
@@ -19,7 +20,14 @@ function Join() {
 
   const hello = async (data) => {
     try {
-      toast.success("succesfully added to primum memeber")
+      const res = await axios.post(
+        "https://backend-api-cl99.onrender.com/api/join",
+        data,
+      );
+      setMessage(res.data.message);
+      reset();
+      navigate("/");
+      toast.success("succesfully added to primum memeber");
 
       reset();
     } catch (err) {

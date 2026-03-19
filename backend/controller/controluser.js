@@ -28,8 +28,8 @@ const newuser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: false,
+      sameSite: "lax",
     });
 
     res.json({
@@ -64,8 +64,8 @@ const loginuser = async (req, res) => {
     );
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: false,
+      sameSite: "lax",
     });
 
     res
@@ -104,8 +104,8 @@ const deleteuser = async (req, res) => {
 const logoutUser = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: true, // true if HTTPS
-    sameSite: "none", // must match login
+    secure: false, // true if HTTPS
+    sameSite: "lax", // must match login
   });
   res.json({ message: "Logged out successfully" });
 };
