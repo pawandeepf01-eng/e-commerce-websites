@@ -87,7 +87,7 @@ function Showuser() {
                 {/* Register Date */}
                 <div className="hidden md:flex flex-col gap-1">
                   <p className="text-gray-500">
-                    {new Date(item.createdAt).toLocaleDateString()}
+                     {new Date(item.createdAt).toLocaleString()}
                   </p>
                 </div>
 
